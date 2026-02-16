@@ -219,31 +219,73 @@ function initMythsPage() {
   var currentVerdict = 'all';
   var currentSearch = '';
 
+  // Initialize Fuse.js for fuzzy search
+  var fuse = new Fuse(mythsData, {
+    keys: [
+      { name: 'title', weight: 0.4 },
+      { name: 'shortExplanation', weight: 0.3 },
+      { name: 'fullExplanation', weight: 0.15 },
+      { name: 'category', weight: 0.15 }
+    ],
+    threshold: 0.4,         // 0 = exact match, 1 = match anything
+    distance: 200,           // how far to search within a field
+    includeScore: true,
+    includeMatches: true,
+    ignoreLocation: true,    // search the entire string, not just the start
+    minMatchCharLength: 2,
+    findAllMatches: true
+  });
+
   function renderMyths() {
     grid.innerHTML = '';
     var count = 0;
 
-    mythsData.forEach(function(myth) {
+    // Get filtered results: either fuzzy search or full list
+    var mythsToShow;
+    if (currentSearch === '') {
+      mythsToShow = mythsData.map(function(myth) { return { item: myth, score: 0 }; });
+    } else {
+      mythsToShow = fuse.search(currentSearch);
+    }
+
+    mythsToShow.forEach(function(result) {
+      var myth = result.item;
       var matchesCategory = currentCategory === 'all' || myth.category === currentCategory;
       var matchesVerdict = currentVerdict === 'all' || myth.verdict === currentVerdict;
-      var matchesSearch = currentSearch === '' ||
-        myth.title.toLowerCase().includes(currentSearch) ||
-        myth.shortExplanation.toLowerCase().includes(currentSearch) ||
-        myth.category.toLowerCase().includes(currentSearch);
 
-      if (matchesCategory && matchesVerdict && matchesSearch) {
+      if (matchesCategory && matchesVerdict) {
         grid.appendChild(createMythCard(myth));
         count++;
       }
     });
 
-    emptyState.style.display = count === 0 ? 'block' : 'none';
+    // Update empty state with helpful message
+    if (count === 0 && currentSearch !== '') {
+      emptyState.innerHTML =
+        '<div class="icon">&#128373;</div>' +
+        '<h3>No myths found</h3>' +
+        '<p>No results for "<strong>' + escapeHtml(currentSearch) + '</strong>". Try different keywords or check your spelling.</p>';
+      emptyState.style.display = 'block';
+    } else if (count === 0) {
+      emptyState.innerHTML =
+        '<div class="icon">&#128373;</div>' +
+        '<h3>No myths found</h3>' +
+        '<p>Try a different filter combination.</p>';
+      emptyState.style.display = 'block';
+    } else {
+      emptyState.style.display = 'none';
+    }
   }
 
-  // Search
+  // Search with debounce for performance at scale
+  var searchTimer;
   searchInput.addEventListener('input', function() {
-    currentSearch = this.value.toLowerCase().trim();
-    renderMyths();
+    var input = this;
+    clearTimeout(searchTimer);
+    searchTimer = setTimeout(function() {
+      currentSearch = input.value.trim();
+      renderMyths();
+    }, 150);
   });
 
   // Category filter
@@ -267,6 +309,13 @@ function initMythsPage() {
   });
 
   renderMyths();
+}
+
+// HTML-escape helper for safe rendering of user input
+function escapeHtml(str) {
+  var div = document.createElement('div');
+  div.appendChild(document.createTextNode(str));
+  return div.innerHTML;
 }
 
 // ===== PAGE: ASK FORM =====
