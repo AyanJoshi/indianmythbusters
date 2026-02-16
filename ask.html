@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ask a Question - Indian Myth Busters</title>
+  <meta name="description" content="Submit a myth or question for investigation. Ask in your own words and we will research it with scientific evidence.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">?</span>
+        Indian Myth Busters
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="myths.html">Myths</a>
+        <a href="ask.html" class="active">Ask a Question</a>
+        <a href="about.html">About</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <section class="ask-hero">
+    <h1>Ask Us Anything</h1>
+    <p>Heard a claim that sounds suspicious? Submit it in your own words. No pre-made questions, no multiple choice. Just ask naturally and we will investigate.</p>
+  </section>
+
+  <!-- Form -->
+  <div class="form-section">
+    <div class="form-card">
+      <form id="askForm">
+        <div class="form-group">
+          <label for="userName">Your Name (optional)</label>
+          <input type="text" id="userName" name="name" placeholder="How should we address you?">
+        </div>
+
+        <div class="form-group">
+          <label for="userEmail">Your Email (optional)</label>
+          <input type="email" id="userEmail" name="email" placeholder="To notify you when we investigate your question">
+          <div class="hint">We will never share your email or spam you.</div>
+        </div>
+
+        <div class="form-group">
+          <label for="mythCategory">Category</label>
+          <select id="mythCategory" name="category">
+            <option value="">Select a category (optional)</option>
+            <option value="Health">Health</option>
+            <option value="Food">Food &amp; Nutrition</option>
+            <option value="Science">Science</option>
+            <option value="Culture">Culture &amp; Traditions</option>
+            <option value="Other">Other</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="userQuestion">Your Question or Myth *</label>
+          <textarea id="userQuestion" name="question" placeholder="Write your question in your own style. For example: &quot;My grandmother says eating curd at night causes cold - is that true?&quot; or &quot;Does keeping a phone near your head while sleeping cause brain cancer?&quot;" required></textarea>
+          <div class="hint">Write naturally, as if you were asking a friend. There are no wrong ways to phrase it.</div>
+        </div>
+
+        <div class="form-group">
+          <label for="mythContext">Where did you hear this? (optional)</label>
+          <input type="text" id="mythContext" name="context" placeholder="e.g., Family, WhatsApp, social media, school...">
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit Your Question</button>
+      </form>
+
+      <div class="form-success" id="formSuccess">
+        <div class="checkmark">&#10003;</div>
+        <h3>Question Submitted!</h3>
+        <p style="color: var(--clr-text-light); margin-top: 0.75rem;">Thank you for your curiosity. We will research this claim and add it to our investigations. If you left your email, we will notify you when it is published.</p>
+        <a href="myths.html" class="btn btn-dark" style="margin-top: 1.5rem;">Browse Existing Myths</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="myths.html">Myths</a>
+        <a href="ask.html">Ask a Question</a>
+        <a href="about.html">About</a>
+      </div>
+      <p>Indian Myth Busters &mdash; Facts over fiction. All claims backed by legitimate sources.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

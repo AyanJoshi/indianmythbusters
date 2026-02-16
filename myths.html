@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>All Myths - Indian Myth Busters</title>
+  <meta name="description" content="Browse all investigated myths with scientific verdicts and source citations.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <a href="index.html" class="logo">
+        <span class="logo-icon">?</span>
+        Indian Myth Busters
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="index.html">Home</a>
+        <a href="myths.html" class="active">Myths</a>
+        <a href="ask.html">Ask a Question</a>
+        <a href="about.html">About</a>
+      </div>
+      <button class="hamburger" id="hamburger" aria-label="Toggle navigation">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Page Hero -->
+  <section class="page-hero">
+    <h1>All Myths Investigated</h1>
+    <p>Browse our full collection of myth investigations. Every verdict is backed by peer-reviewed research and legitimate sources.</p>
+  </section>
+
+  <!-- Myths Content -->
+  <section class="section">
+    <div class="container">
+      <!-- Search -->
+      <div class="search-container">
+        <span class="search-icon">&#128269;</span>
+        <input type="text" id="searchInput" placeholder="Search myths...">
+      </div>
+
+      <!-- Category Filters -->
+      <div class="filter-bar" id="filterBar">
+        <button class="filter-btn active" data-category="all">All</button>
+        <button class="filter-btn" data-category="Health">Health</button>
+        <button class="filter-btn" data-category="Food">Food</button>
+        <button class="filter-btn" data-category="Science">Science</button>
+      </div>
+
+      <!-- Verdict Filters -->
+      <div class="filter-bar" id="verdictBar">
+        <button class="filter-btn active" data-verdict="all">All Verdicts</button>
+        <button class="filter-btn" data-verdict="busted">Busted</button>
+        <button class="filter-btn" data-verdict="partial">Partially True</button>
+        <button class="filter-btn" data-verdict="confirmed">Confirmed</button>
+      </div>
+
+      <!-- Myths Grid -->
+      <div class="myths-grid" id="mythsGrid">
+        <!-- Populated by JS -->
+      </div>
+
+      <!-- Empty state -->
+      <div class="empty-state" id="emptyState" style="display:none;">
+        <div class="icon">&#128373;</div>
+        <h3>No myths found</h3>
+        <p>Try a different search term or filter combination.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-links">
+        <a href="index.html">Home</a>
+        <a href="myths.html">Myths</a>
+        <a href="ask.html">Ask a Question</a>
+        <a href="about.html">About</a>
+      </div>
+      <p>Indian Myth Busters &mdash; Facts over fiction. All claims backed by legitimate sources.</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
